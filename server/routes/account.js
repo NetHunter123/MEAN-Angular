@@ -1,7 +1,22 @@
 const express = require("express");
 const router = express.Router();
-router.get("/reg", (req, res) => {
-  res.send("reg page of site");
+const User = require("../models/user");
+
+router.post("/reg", (req, res) => {
+  let newUser = new User({
+    name: req.body.name,
+    email: req.body.email,
+    login: req.body.login,
+    password: req.body.password,
+  });
+
+  User.addUser(newUser, (err, user) => {
+    if (err) {
+      res.json({ success: false, msg: "User has not been added." });
+    } else {
+      res.json({ success: false, msg: "User has been added." });
+    }
+  });
 });
 router.get("/auth", (req, res) => {
   res.send("Login page");
