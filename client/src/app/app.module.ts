@@ -10,6 +10,8 @@ import { RegComponent } from './reg/reg.component';
 import { AuthComponent } from './auth/auth.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { AuthService } from './auth.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -25,8 +27,9 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     AppRoutingModule,
     FormsModule,
     FlashMessagesModule.forRoot(),
+    HttpModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

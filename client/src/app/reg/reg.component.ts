@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import {AuthService} from "../auth.service";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-reg',
   templateUrl: './reg.component.html',
@@ -22,7 +24,9 @@ export class RegComponent implements OnInit {
   login: String = '';
   email: String = '';
   password: String = '';
-  constructor(private _flashMessagesService: FlashMessagesService) {}
+  constructor(private _flashMessagesService: FlashMessagesService,
+              private authService: AuthService,
+              private router: Router) {}
   ngOnInit(): void {}
   signUp() {
     const user = {
@@ -58,5 +62,20 @@ export class RegComponent implements OnInit {
       return false;
     }
     console.log('user: ' + user);
+    this.authService.registerUser(user).subscribe( data=>{
+      if (!data.success){
+        this._flashMessagesService.show(data.msg, {
+          cssClass: 'alert-danger',
+          timeout: 3000,
+        });
+        this.router.navigate(['/reg'])
+      }else {
+        this._flashMessagesService.show(data.msg, {
+          cssClass: 'alert-success',
+          timeout: 3000,
+        });
+        this.router.navigate(['/auth'])
+      }
+    })
   }
 }
