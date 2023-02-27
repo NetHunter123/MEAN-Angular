@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { tokenNotExpired } from 'angular2-jwt';
 import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root',
@@ -37,9 +39,19 @@ export class AuthService {
     this.user = user;
   }
 
-  logout(){
+  logout() {
     this.token = null;
     this.user = null;
-    localStorage.clear()
+    localStorage.clear();
+  }
+
+  isAuthenticated(){
+    // return tokenNotExpired()
+    // return this.jwtHelper.isTokenExpired(this.token); angular-jwt
+    if (this.token) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

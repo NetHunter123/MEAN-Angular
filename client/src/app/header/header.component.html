@@ -5,13 +5,13 @@
 
   <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
     <li><a href="#" class="nav-link px-2 link-secondary" [routerLink]="['/']">Home</a></li>
-    <li><a href="#" class="nav-link px-2 link-dark" [routerLink]="['/dashboard']">Dashboard</a></li>
+    <li *ngIf="authService.isAuthenticated()"><a href="#" class="nav-link px-2 link-dark" [routerLink]="['/dashboard']">Dashboard</a></li>
   </ul>
 
   <div class="col-md-3 text-end">
-    <button type="button" class="btn btn-outline-primary me-2" [routerLink]="['/auth']">Login</button>
-    <button type="button" class="btn btn-primary " [routerLink]="['/reg']">Sign-up</button>
-    <button type="button" class="btn btn-danger" (click)="logoutUser()">Logout</button>
+    <button *ngIf="!authService.isAuthenticated()" type="button" class="btn btn-outline-primary me-2" [routerLink]="['/auth']">Login</button>
+    <button *ngIf="!authService.isAuthenticated()" type="button" class="btn btn-primary " [routerLink]="['/reg']">Sign-up</button>
+    <button *ngIf="authService.isAuthenticated()" type="button" class="btn btn-danger" (click)="logoutUser()">Logout</button>
   </div>
 </header>
 
