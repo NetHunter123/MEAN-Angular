@@ -10,7 +10,8 @@
 
   <div class="col-md-3 text-end">
     <button type="button" class="btn btn-outline-primary me-2" [routerLink]="['/auth']">Login</button>
-    <button type="button" class="btn btn-primary" [routerLink]="['/reg']">Sign-up</button>
+    <button type="button" class="btn btn-primary " [routerLink]="['/reg']">Sign-up</button>
+    <button type="button" class="btn btn-danger" (click)="logoutUser()">Logout</button>
   </div>
 </header>
 
