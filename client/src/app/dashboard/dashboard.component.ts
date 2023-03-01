@@ -57,20 +57,20 @@ export class DashboardComponent implements OnInit {
       return false;
     }
     console.log('post: ', post);
-  //   this.authService.createPost(post).subscribe((data) => {
-  //     if (!data.success) {
-  //       this._flashMessagesService.show(data.msg, {
-  //         cssClass: 'alert-danger',
-  //         timeout: 3000,
-  //       });
-  //       this.router.navigate(['/reg']);
-  //     } else {
-  //       this._flashMessagesService.show(data.msg, {
-  //         cssClass: 'alert-success',
-  //         timeout: 3000,
-  //       });
-  //       this.router.navigate(['/']);
-  //     }
-  //   });
+    this.authService.createPost(post).subscribe((data) => {
+      if (!data.success) {
+        this._flashMessagesService.show(data.msg, {
+          cssClass: 'alert-danger',
+          timeout: 3000,
+        });
+        this.router.navigate(['/reg']);
+      } else {
+        this._flashMessagesService.show(data.msg, {
+          cssClass: 'alert-success',
+          timeout: 3000,
+        });
+        this.router.navigate(['/']);
+      }
+    });
   }
 }

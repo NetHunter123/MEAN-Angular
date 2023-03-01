@@ -6,6 +6,8 @@ const passport = require("passport");
 const path = require("path");
 const config = require("./config/db");
 const account = require("./routes/account");
+const Post = require("./models/post");
+
 
 mongoose.set("strictQuery", false);
 
@@ -25,7 +27,8 @@ app.use(passport.session());
 require("./config/passport")(passport);
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit:'50mb'}));
+app.use(bodyParser.urlencoded({limit:'50mb',extended:true,parameterLimit:1000000}));
 
 mongoose.connect(config.db);
 mongoose.connection.on("connected", () => {
@@ -40,7 +43,7 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("main page of site");
+  Post.find().then(posts=>res.json(posts))
 });
 
 app.use("/account", account);

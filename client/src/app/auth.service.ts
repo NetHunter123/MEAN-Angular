@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { tokenNotExpired } from 'angular2-jwt';
 import { map } from 'rxjs/operators';
-import {postcss} from "@angular-devkit/build-angular/src/webpack/plugins/postcss-cli-resources";
-
+import { postcss } from '@angular-devkit/build-angular/src/webpack/plugins/postcss-cli-resources';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   token: any;
   user: any;
@@ -46,7 +46,7 @@ export class AuthService {
     localStorage.clear();
   }
 
-  isAuthenticated(){
+  isAuthenticated() {
     // return tokenNotExpired()
     // return this.jwtHelper.isTokenExpired(this.token); angular-jwt
     if (this.token) {
@@ -56,13 +56,18 @@ export class AuthService {
     }
   }
 
-  createPost(post:any){
-    // let headers = new Headers();
-    // headers.append('Content-Type', 'application/json');
-    // return this.http
-    //   .post('http://localhost:3000/account/dashboard', post, {
-    //     headers: headers,
-    //   })
-    //   .pipe(map((res) => res.json()));
+  createPost(post: any) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http
+      .post('http://localhost:3000/account/dashboard', post, {
+        headers: headers,
+      })
+      .pipe(map((res) => res.json()));
+  }
+
+  getAllPosts() {
+    return this.http.get('http://localhost:3000')
+      .pipe(map((res) => res.json()));
   }
 }
