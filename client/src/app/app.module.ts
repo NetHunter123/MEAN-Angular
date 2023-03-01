@@ -12,6 +12,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService } from './auth.service';
 import { HttpModule } from '@angular/http';
+import {QuillModule} from "ngx-quill";
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     FlashMessagesModule.forRoot(),
     HttpModule,
+    QuillModule.forRoot()
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

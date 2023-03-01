@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { tokenNotExpired } from 'angular2-jwt';
 import { map } from 'rxjs/operators';
+import {postcss} from "@angular-devkit/build-angular/src/webpack/plugins/postcss-cli-resources";
 
 
 @Injectable({
@@ -53,5 +54,15 @@ export class AuthService {
     } else {
       return false;
     }
+  }
+
+  createPost(post:any){
+    // let headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    // return this.http
+    //   .post('http://localhost:3000/account/dashboard', post, {
+    //     headers: headers,
+    //   })
+    //   .pipe(map((res) => res.json()));
   }
 }
