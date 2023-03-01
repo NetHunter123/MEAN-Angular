@@ -32,7 +32,7 @@
           <small class="text-muted fz-10 col-6" >{{post.data | date:"short"}}</small>
         </div>
         <h4>
-          <a class="text-dark m-0" href="#">{{post.title}}</a>
+          <a class="text-dark m-0" [routerLink]="['post', post._id]" href="#">{{post.title}}</a>
         </h4>
         <quill-view [content]="post.text"></quill-view>
       </div>

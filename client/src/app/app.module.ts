@@ -13,6 +13,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService } from './auth.service';
 import { HttpModule } from '@angular/http';
 import {QuillModule} from "ngx-quill";
+import { PostComponent } from './post/post.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {QuillModule} from "ngx-quill";
     RegComponent,
     AuthComponent,
     DashboardComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,

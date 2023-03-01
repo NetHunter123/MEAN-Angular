@@ -7,7 +7,6 @@ import { postcss } from '@angular-devkit/build-angular/src/webpack/plugins/postc
 @Injectable({
   providedIn: 'root',
 })
-
 export class AuthService {
   token: any;
   user: any;
@@ -67,7 +66,19 @@ export class AuthService {
   }
 
   getAllPosts() {
-    return this.http.get('http://localhost:3000')
+    return this.http
+      .get('http://localhost:3000')
+      .pipe(map((res) => res.json()));
+  }
+  getPostById(id:any) {
+    return this.http
+      .get(`http://localhost:3000/post/${id}`)
+      .pipe(map((res) => res.json()));
+  }
+
+  deletePost(id:any){
+    return this.http
+      .delete(`http://localhost:3000/post/${id}`)
       .pipe(map((res) => res.json()));
   }
 }
